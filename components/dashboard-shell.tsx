@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { Battery, Lock, ShieldCheck, Siren } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LiveDot } from "@/components/ui-kit"
@@ -30,27 +31,54 @@ export function DashboardShell() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-lg border border-primary/40 bg-primary/10 text-primary">
-              <ShieldCheck className="size-5" />
+            <div className="relative size-12 shrink-0 overflow-hidden rounded-xl border border-primary/40 shadow-[0_0_22px_-4px] shadow-primary/60">
+              <Image
+                src="/impulso-logo.jpg"
+                alt="Logomarca Impulso Digital - hexágono neon"
+                fill
+                sizes="48px"
+                className="object-cover"
+                priority
+              />
             </div>
             <div>
               <h1 className="text-balance text-base font-bold leading-tight text-foreground">
-                Aurora XAI <span className="font-mono text-primary">2.5.0</span>
+                Impulso Digital{" "}
+                <span className="text-muted-foreground">·</span>{" "}
+                <span className="font-mono text-primary">Aurora XAI 2.5.0</span>
               </h1>
-              <p className="text-[11px] text-muted-foreground">Ecossistema de Soberania Nacional</p>
+              <p className="text-[11px] text-muted-foreground">Soluções em I.A · Ecossistema de Soberania Nacional</p>
+              <p className="text-[10px] text-muted-foreground/80">CEO &amp; Idealizador: Felipe Marcos de Abreu Aquino</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 rounded-full border border-success/30 bg-success/10 px-2.5 py-1 text-[11px] font-medium text-success">
-              <LiveDot /> Sistemas online
-            </span>
-            <span className="hidden font-mono text-xs text-muted-foreground sm:inline">{hora}</span>
+            <Image
+              src="/bandeira-brasil-mg.webp"
+              alt="Bandeiras do Brasil e de Minas Gerais"
+              width={72}
+              height={48}
+              className="hidden h-9 w-auto rounded-sm border border-border object-contain sm:block"
+            />
+            <div className="flex flex-col items-end gap-1">
+              <span className="flex items-center gap-1.5 rounded-full border border-success/30 bg-success/10 px-2.5 py-1 text-[11px] font-medium text-success">
+                <LiveDot /> Sistemas online
+              </span>
+              <span className="hidden font-mono text-xs text-muted-foreground sm:inline">{hora}</span>
+            </div>
           </div>
         </div>
 
-        <nav className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-2 pb-2">
+        <div
+          className="h-0.5 w-full"
+          style={{
+            background:
+              "linear-gradient(90deg, var(--neon-red), var(--neon-yellow), var(--neon-green), var(--neon-blue), var(--neon-magenta))",
+          }}
+        />
+
+        <nav className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-2 py-2">
           {ABAS.map((a) => (
             <button
               key={a.id}
@@ -79,20 +107,35 @@ export function DashboardShell() {
       </main>
 
       <footer className="border-t border-border bg-card/30">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4">
-          <div className="flex flex-wrap items-center gap-2">
-            {SELOS.map((s) => (
-              <span
-                key={s}
-                className="inline-flex items-center gap-1.5 rounded-md border border-border bg-secondary/60 px-2.5 py-1 font-mono text-[11px] font-semibold text-foreground"
-              >
-                <Lock className="size-3 text-success" /> {s}
-              </span>
-            ))}
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              {SELOS.map((s) => (
+                <span
+                  key={s}
+                  className="inline-flex items-center gap-1.5 rounded-md border border-border bg-secondary/60 px-2.5 py-1 font-mono text-[11px] font-semibold text-foreground"
+                >
+                  <Lock className="size-3 text-success" /> {s}
+                </span>
+              ))}
+            </div>
+            <Image
+              src="/bandeira-brasil-mg.webp"
+              alt="Bandeiras do Brasil e de Minas Gerais"
+              width={88}
+              height={56}
+              className="h-10 w-auto rounded-sm border border-border object-contain"
+            />
           </div>
-          <p className="text-[11px] text-muted-foreground">
-            Conformidade técnica e jurídica · Soberania de dados nacionais
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border/60 pt-3">
+            <p className="text-[11px] text-muted-foreground">
+              <span className="font-semibold text-foreground">Impulso Digital — Soluções em I.A</span> · Conformidade
+              técnica e jurídica · Soberania de dados nacionais
+            </p>
+            <p className="text-[11px] text-muted-foreground/80">
+              Idealizado e desenvolvido por Felipe Marcos de Abreu Aquino
+            </p>
+          </div>
         </div>
       </footer>
     </div>

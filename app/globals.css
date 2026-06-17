@@ -42,6 +42,11 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-info: var(--info);
+  --color-neon-red: var(--neon-red);
+  --color-neon-blue: var(--neon-blue);
+  --color-neon-green: var(--neon-green);
+  --color-neon-yellow: var(--neon-yellow);
+  --color-neon-magenta: var(--neon-magenta);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -53,43 +58,49 @@
 
 :root {
   color-scheme: dark;
-  /* Tema corporativo soberano: fundo grafite profundo, azul institucional, ciano de telemetria */
-  --background: oklch(0.16 0.012 250);
-  --foreground: oklch(0.93 0.01 240);
-  --card: oklch(0.2 0.015 250);
-  --card-foreground: oklch(0.95 0.01 240);
-  --popover: oklch(0.2 0.015 250);
-  --popover-foreground: oklch(0.95 0.01 240);
-  --primary: oklch(0.62 0.16 240);
-  --primary-foreground: oklch(0.16 0.012 250);
-  --secondary: oklch(0.27 0.02 250);
-  --secondary-foreground: oklch(0.93 0.01 240);
-  --muted: oklch(0.25 0.018 250);
-  --muted-foreground: oklch(0.68 0.015 240);
-  --accent: oklch(0.72 0.14 195);
-  --accent-foreground: oklch(0.16 0.012 250);
-  --destructive: oklch(0.6 0.2 25);
-  --border: oklch(0.32 0.02 250);
-  --input: oklch(0.28 0.02 250);
-  --ring: oklch(0.62 0.16 240);
-  --chart-1: oklch(0.62 0.16 240);
-  --chart-2: oklch(0.72 0.14 195);
-  --chart-3: oklch(0.75 0.15 145);
-  --chart-4: oklch(0.78 0.15 75);
-  --chart-5: oklch(0.6 0.2 25);
+  /* Impulso Digital — fundo cósmico profundo, acentos neon arco-íris da logomarca */
+  --background: oklch(0.14 0.025 275);
+  --foreground: oklch(0.94 0.01 250);
+  --card: oklch(0.18 0.03 275);
+  --card-foreground: oklch(0.95 0.01 250);
+  --popover: oklch(0.18 0.03 275);
+  --popover-foreground: oklch(0.95 0.01 250);
+  --primary: oklch(0.65 0.2 245);
+  --primary-foreground: oklch(0.14 0.025 275);
+  --secondary: oklch(0.26 0.035 275);
+  --secondary-foreground: oklch(0.94 0.01 250);
+  --muted: oklch(0.24 0.03 275);
+  --muted-foreground: oklch(0.7 0.02 255);
+  --accent: oklch(0.74 0.16 185);
+  --accent-foreground: oklch(0.14 0.025 275);
+  --destructive: oklch(0.62 0.24 22);
+  --border: oklch(0.34 0.04 275);
+  --input: oklch(0.3 0.035 275);
+  --ring: oklch(0.65 0.2 245);
+  --chart-1: oklch(0.62 0.25 25);
+  --chart-2: oklch(0.65 0.2 250);
+  --chart-3: oklch(0.78 0.18 145);
+  --chart-4: oklch(0.82 0.17 95);
+  --chart-5: oklch(0.7 0.2 320);
   --radius: 0.5rem;
-  --sidebar: oklch(0.18 0.014 250);
-  --sidebar-foreground: oklch(0.9 0.01 240);
-  --sidebar-primary: oklch(0.62 0.16 240);
-  --sidebar-primary-foreground: oklch(0.16 0.012 250);
-  --sidebar-accent: oklch(0.27 0.02 250);
-  --sidebar-accent-foreground: oklch(0.93 0.01 240);
-  --sidebar-border: oklch(0.32 0.02 250);
-  --sidebar-ring: oklch(0.62 0.16 240);
-  /* Tokens de status soberano */
-  --success: oklch(0.75 0.15 145);
-  --warning: oklch(0.78 0.15 75);
-  --info: oklch(0.72 0.14 195);
+  --sidebar: oklch(0.16 0.028 275);
+  --sidebar-foreground: oklch(0.92 0.01 250);
+  --sidebar-primary: oklch(0.65 0.2 245);
+  --sidebar-primary-foreground: oklch(0.14 0.025 275);
+  --sidebar-accent: oklch(0.26 0.035 275);
+  --sidebar-accent-foreground: oklch(0.94 0.01 250);
+  --sidebar-border: oklch(0.34 0.04 275);
+  --sidebar-ring: oklch(0.65 0.2 245);
+  /* Tokens de status */
+  --success: oklch(0.78 0.18 145);
+  --warning: oklch(0.82 0.17 85);
+  --info: oklch(0.74 0.16 185);
+  /* Cores neon da logomarca Impulso Digital */
+  --neon-red: oklch(0.62 0.25 25);
+  --neon-blue: oklch(0.6 0.22 250);
+  --neon-green: oklch(0.78 0.2 145);
+  --neon-yellow: oklch(0.85 0.18 95);
+  --neon-magenta: oklch(0.65 0.25 330);
 }
 
 .dark {

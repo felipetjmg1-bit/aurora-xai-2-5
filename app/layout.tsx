@@ -10,9 +10,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Aurora XAI 2.5.0 — Ecossistema de Soberania Nacional',
+  title: 'Impulso Digital — Aurora XAI 2.5.0 | Soberania Nacional',
   description:
-    'Plataforma governamental de inteligência mineral, defesa digital da economia e auditoria financeira soberana. TLS 1.3 · AES-256 · LGPD · TCU/CGU.',
+    'Impulso Digital · Soluções em I.A. Plataforma de inteligência mineral, defesa digital da economia e auditoria financeira soberana. CEO Felipe Marcos de Abreu Aquino. TLS 1.3 · AES-256 · LGPD · TCU/CGU.',
   generator: 'v0.app',
   icons: {
     icon: [
