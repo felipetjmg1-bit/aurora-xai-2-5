@@ -149,3 +149,135 @@ export function gerarTransacaoDrex(): TransacaoDrex {
 export function gerarLoteDrex(n = 8): TransacaoDrex[] {
   return Array.from({ length: n }, gerarTransacaoDrex)
 }
+
+// ---------- Soberania Ambiental: Desmatamento + Clima ----------
+export interface BiomaMonitorado {
+  id: string
+  nome: string
+  uf: string
+  areaTotalKm2: number
+}
+
+export const BIOMAS: BiomaMonitorado[] = [
+  { id: "amazonia", nome: "Amazônia Legal", uf: "AM/PA/MT", areaTotalKm2: 5217423 },
+  { id: "cerrado", nome: "Cerrado", uf: "GO/MT/MG", areaTotalKm2: 1983017 },
+  { id: "mata-atlantica", nome: "Mata Atlântica", uf: "MG/SP/BA", areaTotalKm2: 1110182 },
+  { id: "pantanal", nome: "Pantanal", uf: "MS/MT", areaTotalKm2: 150355 },
+  { id: "caatinga", nome: "Caatinga", uf: "BA/PE/CE", areaTotalKm2: 844453 },
+]
+
+export interface AlertaDesmatamento {
+  id: string
+  bioma: string
+  bioma_nome: string
+  uf: string
+  areaHa: number
+  tipo: "corte raso" | "degradação" | "queimada" | "garimpo ilegal"
+  satelite: "DETER/INPE" | "PRODES/INPE" | "Sentinel-2" | "Landsat-9"
+  severidade: "crítico" | "alto" | "moderado"
+  lat: number
+  lon: number
+  timestamp: string
+  acao: "fiscalização despachada" | "embargo automático" | "em análise"
+}
+
+const TIPOS_DESM = ["corte raso", "degradação", "queimada", "garimpo ilegal"] as const
+const SATELITES = ["DETER/INPE", "PRODES/INPE", "Sentinel-2", "Landsat-9"] as const
+
+export function gerarAlertaDesmatamento(): AlertaDesmatamento {
+  const b = BIOMAS[Math.floor(Math.random() * BIOMAS.length)]
+  const areaHa = +(Math.random() * 320 + 4).toFixed(1)
+  const tipo = TIPOS_DESM[Math.floor(Math.random() * TIPOS_DESM.length)]
+  const severidade = areaHa > 180 ? "crítico" : areaHa > 60 ? "alto" : "moderado"
+  const acao =
+    severidade === "crítico"
+      ? "fiscalização despachada"
+      : tipo === "garimpo ilegal"
+        ? "embargo automático"
+        : "em análise"
+  return {
+    id: `DETER-${Math.random().toString(36).slice(2, 9).toUpperCase()}`,
+    bioma: b.id,
+    bioma_nome: b.nome,
+    uf: b.uf,
+    areaHa,
+    tipo,
+    satelite: SATELITES[Math.floor(Math.random() * SATELITES.length)],
+    severidade,
+    lat: +(Math.random() * -28 - 2).toFixed(3),
+    lon: +(Math.random() * -28 - 44).toFixed(3),
+    timestamp: new Date().toISOString(),
+    acao,
+  }
+}
+
+export function gerarLoteDesmatamento(n = 7): AlertaDesmatamento[] {
+  return Array.from({ length: n }, gerarAlertaDesmatamento)
+}
+
+export interface IndicadorClima {
+  id: string
+  bioma: string
+  bioma_nome: string
+  tempC: number
+  umidade: number // %
+  riscoFogo: number // 0-100
+  co2ppm: number
+  precipMm: number
+  qualidadeAr: "boa" | "moderada" | "ruim"
+}
+
+export function gerarClima(): IndicadorClima[] {
+  return BIOMAS.map((b) => {
+    const baseTemp: Record<string, number> = {
+      amazonia: 28,
+      cerrado: 31,
+      "mata-atlantica": 24,
+      pantanal: 33,
+      caatinga: 35,
+    }
+    const temp = +jitter(baseTemp[b.id] ?? 28, 0.08).toFixed(1)
+    const umidade = +jitter(b.id === "caatinga" ? 38 : 68, 0.12).toFixed(0)
+    const riscoFogo = +Math.min(100, Math.max(0, (temp - 18) * 3 + (100 - umidade) * 0.6 + jitter(10, 0.5))).toFixed(0)
+    const qualidadeAr = riscoFogo > 70 ? "ruim" : riscoFogo > 45 ? "moderada" : "boa"
+    return {
+      id: b.id,
+      bioma: b.id,
+      bioma_nome: b.nome,
+      tempC: temp,
+      umidade,
+      riscoFogo,
+      co2ppm: +jitter(421, 0.02).toFixed(0),
+      precipMm: +jitter(b.id === "amazonia" ? 12 : 4, 0.6).toFixed(1),
+      qualidadeAr,
+    }
+  })
+}
+
+export function calcularSoberaniaAmbiental(
+  alertas: AlertaDesmatamento[],
+  clima: IndicadorClima[],
+) {
+  const areaTotalHa = +alertas.reduce((a, x) => a + x.areaHa, 0).toFixed(1)
+  const criticos = alertas.filter((a) => a.severidade === "crítico").length
+  const embargos = alertas.filter((a) => a.acao !== "em análise").length
+  const riscoFogoMedio = Math.round(clima.reduce((a, c) => a + c.riscoFogo, 0) / (clima.length || 1))
+  // Índice de Soberania Ambiental (quanto maior, mais protegido)
+  const indiceSoberania = +Math.max(
+    0,
+    Math.min(100, 100 - areaTotalHa * 0.05 - criticos * 3 - riscoFogoMedio * 0.15),
+  ).toFixed(1)
+  return { areaTotalHa, criticos, embargos, riscoFogoMedio, indiceSoberania }
+}
+
+export function gerarSerieDesmatamento(pontos = 24) {
+  const agora = Date.now()
+  return Array.from({ length: pontos }, (_, i) => {
+    const t = new Date(agora - (pontos - 1 - i) * 60 * 60 * 1000)
+    return {
+      hora: `${String(t.getHours()).padStart(2, "0")}:00`,
+      alertas: Math.round(jitter(14, 0.5)),
+      areaHa: Math.round(jitter(120, 0.4)),
+    }
+  })
+}

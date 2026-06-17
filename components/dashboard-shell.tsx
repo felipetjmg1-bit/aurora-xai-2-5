@@ -2,17 +2,19 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { Battery, Lock, ShieldCheck, Siren } from "lucide-react"
+import { Battery, Leaf, Lock, ShieldCheck, Siren } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LiveDot } from "@/components/ui-kit"
 import { ModuloMineracao } from "@/components/modulo-mineracao"
 import { ModuloBets } from "@/components/modulo-bets"
 import { ModuloDrex } from "@/components/modulo-drex"
+import { ModuloAmbiental } from "@/components/modulo-ambiental"
 
-type Aba = "mineracao" | "bets" | "drex"
+type Aba = "mineracao" | "ambiental" | "bets" | "drex"
 
 const ABAS: { id: Aba; label: string; icon: React.ReactNode; desc: string }[] = [
   { id: "mineracao", label: "Mineração", icon: <Battery className="size-4" />, desc: "Matérias-primas estratégicas" },
+  { id: "ambiental", label: "Soberania Ambiental", icon: <Leaf className="size-4" />, desc: "Desmatamento e clima" },
   { id: "bets", label: "Defesa Econômica", icon: <Siren className="size-4" />, desc: "Bloqueio de bets ilegais" },
   { id: "drex", label: "DREX & KIDS", icon: <ShieldCheck className="size-4" />, desc: "Auditoria e proteção" },
 ]
@@ -102,6 +104,7 @@ export function DashboardShell() {
 
       <main className="mx-auto max-w-6xl px-4 py-5">
         {aba === "mineracao" && <ModuloMineracao />}
+        {aba === "ambiental" && <ModuloAmbiental />}
         {aba === "bets" && <ModuloBets />}
         {aba === "drex" && <ModuloDrex />}
       </main>
