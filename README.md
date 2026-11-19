@@ -1,33 +1,82 @@
-# aurora-xai-2-5
+# Aurora XAI 2.5
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+Interface web experimental da Impulso Digital, construída com Next.js e React. O repositório contém uma aplicação de painel; a implementação deve ser avaliada pelo código disponível, sem interpretar os textos institucionais da interface como comprovação de integrações, auditorias ou controles regulatórios em produção.
 
-## Built with v0
+> **Maturidade:** protótipo de interface. Este repositório não declara, por si só, conexão operacional com sistemas governamentais, instituições financeiras, bases externas ou infraestrutura de segurança certificada.
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+## Objetivo
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_0sa080p2RpHpgfKoHyQBPWZ5BMjV)
+Organizar uma experiência web para apresentar informações e módulos associados ao conceito Aurora XAI. O escopo funcional exato é definido pelos componentes presentes em `components/` e pelas páginas em `app/`.
 
-## Getting Started
+## Arquitetura observável
 
-First, run the development server:
+- **Framework:** Next.js 16 (App Router).
+- **Interface:** React 19 e TypeScript.
+- **Estilos:** Tailwind CSS 4 e utilitários de classes.
+- **Visualização de dados:** Recharts.
+- **Ícones:** Lucide React.
+- **Analytics:** integração com Vercel Analytics carregada apenas em produção.
+- **Configuração:** TypeScript em modo strict e alias `@/*` apontando para a raiz.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+Fluxo de alto nível:
+
+```mermaid
+flowchart TD
+  U[Usuário] --> N[Next.js App Router]
+  N --> P[app/page.tsx]
+  P --> D[DashboardShell]
+  D --> C[Componentes React]
+  C --> V[Visualizações e interações no navegador]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Requisitos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Node.js compatível com a versão do Next.js utilizada.
+- npm, pnpm ou yarn.
+- Acesso à internet para instalar dependências e carregar fontes/serviços externos declarados pela aplicação.
 
-## Learn More
+## Instalação e execução
 
-To learn more, take a look at the following resources:
+```bash
+git clone https://github.com/felipetjmg1-bit/aurora-xai-2-5.git
+cd aurora-xai-2-5
+npm install
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+Abra [http://localhost:3000](http://localhost:3000).
+
+## Comandos disponíveis
+
+| Comando | Finalidade |
+| --- | --- |
+| `npm run dev` | Inicia o servidor de desenvolvimento |
+| `npm run build` | Gera a build de produção |
+| `npm run start` | Inicia a aplicação compilada |
+| `npm run lint` | Executa o ESLint |
+
+Para validar antes de publicar:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Configuração e segurança
+
+- Não coloque tokens, senhas, chaves privadas ou credenciais no código-fonte.
+- Use variáveis de ambiente para integrações futuras e mantenha arquivos `.env.local` fora do Git.
+- Revise os textos da interface para distinguir dados demonstrativos de dados reais.
+- A presença de um painel visual não comprova que os indicadores estejam conectados a fontes externas.
+
+## Estado e próximos passos
+
+Este README descreve a estrutura identificada no repositório. Antes de considerar o projeto pronto para produção, execute lint e build, revise acessibilidade e responsividade, documente cada fonte de dados e implemente testes para os fluxos críticos.
+
+## Contribuição
+
+Mudanças devem incluir uma descrição do objetivo, arquivos afetados, passos de validação e limitações conhecidas. Não envie dados pessoais ou segredos em issues e pull requests.
+
+## Licença
+
+Consulte o arquivo [LICENSE](LICENSE) para os termos aplicáveis.
