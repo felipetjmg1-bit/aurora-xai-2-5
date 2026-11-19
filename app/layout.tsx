@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Impulso Digital — Aurora XAI 2.5.0 | Soberania Nacional',
   description:
-    'Impulso Digital · Soluções em I.A. Plataforma de inteligência mineral, defesa digital da economia e auditoria financeira soberana. CEO Felipe Marcos de Abreu Aquino. TLS 1.3 · AES-256 · LGPD · TCU/CGU.',
+    'Impulso Digital · Soluções em I.A. Protótipo experimental de interface para inteligência mineral, monitoramento ambiental e simulações financeiras. Não representa certificação, homologação ou integração institucional.',
   generator: 'v0.app',
   icons: {
     icon: [
