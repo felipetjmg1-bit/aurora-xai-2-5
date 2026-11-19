@@ -19,7 +19,7 @@ const ABAS: { id: Aba; label: string; icon: React.ReactNode; desc: string }[] = 
   { id: "drex", label: "DREX & KIDS", icon: <ShieldCheck className="size-4" />, desc: "Auditoria e proteção" },
 ]
 
-const SELOS = ["TLS 1.3", "AES-256", "LGPD", "TCU/CGU"]
+const SELOS = ["Protótipo", "Dados simulados", "Avaliação técnica", "Em desenvolvimento"]
 
 export function DashboardShell() {
   const [aba, setAba] = useState<Aba>("mineracao")
