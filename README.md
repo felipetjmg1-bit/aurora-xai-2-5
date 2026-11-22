@@ -3,9 +3,9 @@
 <p align="center"><img src="PROJECT-OVERVIEW.svg" alt="Diagrama de funcionalidades de Aurora XAI 2.5" width="100%"></p>
 
 
-Interface web experimental da Impulso Digital, construída com Next.js e React. O repositório contém uma aplicação de painel; a implementação deve ser avaliada pelo código disponível, sem interpretar os textos institucionais da interface como comprovação de integrações, auditorias ou controles regulatórios em produção.
+Interface web em desenvolvimento da Impulso Digital, construída com Next.js e React. O repositório contém uma aplicação de painel; a implementação deve ser avaliada pelo código disponível, sem interpretar os textos institucionais da interface como comprovação de integrações, auditorias ou controles regulatórios em produção.
 
-> **Maturidade:** protótipo de interface. Este repositório não declara, por si só, conexão operacional com sistemas governamentais, instituições financeiras, bases externas ou infraestrutura de segurança certificada.
+> **Maturidade:** aplicação de interface em desenvolvimento. Este repositório não declara, por si só, conexão operacional com sistemas governamentais, instituições financeiras, bases externas ou infraestrutura de segurança certificada.
 
 ## Objetivo
 
