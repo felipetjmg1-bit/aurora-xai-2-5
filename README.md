@@ -86,3 +86,8 @@ Consulte o arquivo [LICENSE](LICENSE) para os termos aplicáveis.
 
 
 **Empresa responsável:** Impulso Digital Soluções em IA.
+
+
+## Fluxo passo a passo
+
+Consulte o [guia textual com as etapas do projeto](docs/PROCESSO-PASSO-A-PASSO.md). O infográfico acima resume visualmente o mesmo fluxo.
